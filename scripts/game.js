@@ -16,10 +16,10 @@ function Color(color, id, audio) {
 }
 
 function initialize() {
-    colors.push(new Color('green', 1, new Audio('../assets/green.mp3')));
-    colors.push(new Color('red', 2, new Audio('../assets/red.mp3')));
-    colors.push(new Color('yellow', 3, new Audio('../assets/yellow.mp3')));
-    colors.push(new Color('blue', 4, new Audio('../assets/blue.mp3')));   
+    colors.push(new Color('green', 1, new Audio('../sounds/green.mp3')));
+    colors.push(new Color('red', 2, new Audio('../sounds/red.mp3')));
+    colors.push(new Color('yellow', 3, new Audio('../sounds/yellow.mp3')));
+    colors.push(new Color('blue', 4, new Audio('../sounds/blue.mp3')));   
     gameBlocked(true); 
 }
 
@@ -110,12 +110,11 @@ function gameOver () {
     setTimeout(function() {
         gameOverAlert();
         reset();
-        // gameSettingsEnd(); 
         gameBlocked(true);  
     }, 1000);
 }
 
-async function gameOverAlert() {
+function gameOverAlert() {
     Swal.fire({
         title: messages.gameOver,
         showClass: {
