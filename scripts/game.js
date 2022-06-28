@@ -4,6 +4,11 @@ let isMuted = false;
 let gameIsBlocked = true;
 let colors = [];
 
+const messages = {
+    gameOver: 'game over 😔',
+    tryAgain: 'try again!'
+};
+
 function Color(color, id, audio) {
     this.color = color;
     this.id = id;
@@ -103,19 +108,38 @@ function gameBlocked(isStarted) {
 
 function gameOver () {
     setTimeout(function() {
-        alert('GAME OVER');
+        gameOverAlert();
         reset();
-        gameSettingsEnd(); 
+        // gameSettingsEnd(); 
         gameBlocked(true);  
     }, 1000);
 }
 
-function gameSettingsStart() {
-    addClassById('start', 'invisible');
+async function gameOverAlert() {
+    Swal.fire({
+        title: messages.gameOver,
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        },
+        width: 600,
+        padding: '3em',
+        color: '#716add',
+        backdrop: `
+        #563D67
+        `,
+         confirmButtonText: messages.tryAgain
+      }).then((result) => {
+        if (result.isConfirmed) {
+            startGame();
+        }
+      })
 }
 
-function gameSettingsEnd() {
-    removeClassById('start', 'invisible');
+function gameSettingsStart() {
+    addClassById('start', 'invisible');
 }
 
 function reset() {

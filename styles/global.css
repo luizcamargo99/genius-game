@@ -4,8 +4,13 @@
 }
 
 body {
-    background: rgb(22, 22, 22);
+    background: rgb(15, 15, 15);
+    font-family: Arial, Helvetica, sans-serif;
     color: #fff;
+}
+
+main {
+    align-items: center;
 }
 
 .cube {

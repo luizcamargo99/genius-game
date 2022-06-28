@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/global.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="./scripts/extension.js" defer></script>
     <script src="./scripts/game.js" defer></script>    
+    
     <title>Genius</title>
 </head>
 <body>
-    <main>
+    <main class="column" style="gap: 2rem;">
         <div id="game" class="column" style="gap: 1rem;">
             <div class="row" style="gap: 1rem;">
                 <div class="cube" id="green" onclick="playGame(this)"></div>
@@ -22,11 +25,13 @@
             </div>
         </div>
         <div class="invisible" id="round-container">
-            <span>ROUND: </span>
+            <span>round: </span>
             <span id="round-content"></span>
         </div>
-        <button onclick="mute()" id="mute">Mute</button>
-        <button onclick="startGame()" id="start">Start</button>
+        <div>
+            <button onclick="mute()" id="mute">mute</button>
+            <button onclick="startGame()" id="start">start</button>
+        </div>     
     </main>
 </body>
 </html>
