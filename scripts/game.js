@@ -2,7 +2,7 @@ let sequence = [];
 let playerSequence = [];
 let isMuted = false;
 let gameIsBlocked = true;
-const colors = [];
+let colors = [];
 
 function Color(color, id, audio) {
     this.color = color;
@@ -69,15 +69,14 @@ function playGame(element) {
 }
 
 function blinkColor(currentColor) {
-    const elementColor = document.getElementById(currentColor.color);
-    elementColor.classList.add('opacity');
+    addClassById(currentColor.color, 'opacity');
 
     if (isMuted == false) {
         currentColor.audio.play();
     }    
 
     setTimeout(function() {
-        elementColor.classList.remove('opacity');
+        removeClassById(currentColor.color, 'opacity');
     }, 600);
 }
 
@@ -112,22 +111,22 @@ function gameOver () {
 }
 
 function gameSettingsStart() {
-    document.getElementById('start').classList.add('invisible');
+    addClassById('start', 'invisible');
 }
 
 function gameSettingsEnd() {
-    document.getElementById('start').classList.remove('invisible');
+    removeClassById('start', 'invisible');
 }
 
 function reset() {
     sequence = [];
     playerSequence = [];
-    document.getElementById('round-container').classList.add('invisible');
-    document.getElementById('round-content').innerHTML = '';
+    addClassById('round-container', 'invisible');
+    emptyValueById('round-content');
 }
 
 function setRound () {
-    document.getElementById('round-container').classList.remove('invisible');
+    removeClassById('round-container', 'invisible');
     document.getElementById('round-content').innerHTML = sequence.length;
 }
 
