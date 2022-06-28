@@ -1,51 +1,62 @@
 let sequence = [];
 let playerSequence = [];
+let isMuted = false;
+let gameIsBlocked = true;
 const colors = [];
-const firstIndex = 0;
 
-function Color(color, id) {
+function Color(color, id, audio) {
     this.color = color;
     this.id = id;
+    this.audio = audio;
 }
 
-colors.push(new Color('green', 1));
-colors.push(new Color('red', 2));
-colors.push(new Color('yellow', 3));
-colors.push(new Color('blue', 4));
+function initialize() {
+    colors.push(new Color('green', 1, new Audio('../assets/green.mp3')));
+    colors.push(new Color('red', 2, new Audio('../assets/red.mp3')));
+    colors.push(new Color('yellow', 3, new Audio('../assets/yellow.mp3')));
+    colors.push(new Color('blue', 4, new Audio('../assets/blue.mp3')));   
+    gameBlocked(true); 
+}
 
-function startGame() {
-    getNextColor();
-    markColors(firstIndex);
+function startGame() { 
+    gameSettingsStart();   
+    gameBlocked(true);
+    getNextColor();    
+    markColors(0);
+    setRound();
 }
 
 function getNextColor() {
-    const min = 1;
-    const max = 4;
-    const currentColor = Math.round(Math.random() * (max - min) + min);
+    const currentColor = Math.round(Math.random() * (4 - 1) + 1);
     sequence.push(currentColor);
 }
 
 function markColors (index) {   
     setTimeout(function() {   
-        const id = colors.find(x => x.id == sequence[index]).color;
-        const elementColor = document.getElementById(id);
-        elementColor.classList.add('opacity'); 
-        setTimeout(function() {
-            elementColor.classList.remove('opacity');
-          }, 500);
+        const currentColor = colors.find(x => x.id == sequence[index]);
+        blinkColor(currentColor);
           index++;                   
         if (index < sequence.length) {       
             return markColors(index);        
-        }                
-      }, 1000)
+        }
+        setTimeout(function() {          
+            gameBlocked(false);
+        }, 700);       
+      }, 1200)
 }
 
 function playGame(element) {
-    playerSequence.push(colors.find(x => x.color == element.id).id);
+    if (gameIsBlocked) {
+        return;
+    }
+
+    const currentColor = colors.find(x => x.color == element.id);
+    blinkColor(currentColor);
+    playerSequence.push(currentColor.id);
 
     for (let index = 0; index < playerSequence.length; index++) {
-        if (playerSequence[index] != sequence[index]) {
-            return alert('GAME OVER');
+        if (playerSequence[index] != sequence[index]) {       
+           return gameOver();
         }
     }
     
@@ -57,7 +68,69 @@ function playGame(element) {
     startGame();
 }
 
+function blinkColor(currentColor) {
+    const elementColor = document.getElementById(currentColor.color);
+    elementColor.classList.add('opacity');
 
+    if (isMuted == false) {
+        currentColor.audio.play();
+    }    
 
+    setTimeout(function() {
+        elementColor.classList.remove('opacity');
+    }, 600);
+}
+
+function mute() {
+    isMuted = !isMuted;
+}
+
+function gameBlocked(isStarted) {
+    gameIsBlocked = isStarted;
+    const game = document.getElementById('game');
+    for (let index = 0; index <  game.children.length; index++) {
+        const child = game.children[index];
+        for (let index = 0; index < child.children.length; index++) {
+            const color = child.children[index];
+            if (gameIsBlocked) {
+                color.classList.add('blocked');
+            }
+            else {
+                color.classList.remove('blocked');
+            }            
+        }
+    }
+}
+
+function gameOver () {
+    setTimeout(function() {
+        alert('GAME OVER');
+        reset();
+        gameSettingsEnd(); 
+        gameBlocked(true);  
+    }, 1000);
+}
+
+function gameSettingsStart() {
+    document.getElementById('start').classList.add('invisible');
+}
+
+function gameSettingsEnd() {
+    document.getElementById('start').classList.remove('invisible');
+}
+
+function reset() {
+    sequence = [];
+    playerSequence = [];
+    document.getElementById('round-container').classList.add('invisible');
+    document.getElementById('round-content').innerHTML = '';
+}
+
+function setRound () {
+    document.getElementById('round-container').classList.remove('invisible');
+    document.getElementById('round-content').innerHTML = sequence.length;
+}
+
+initialize();
 
 

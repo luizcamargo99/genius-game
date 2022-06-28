@@ -5,12 +5,17 @@
 
 body {
     background: rgb(22, 22, 22);
+    color: #fff;
 }
 
 .cube {
     height: 10rem;
     width: 10rem;
     cursor: pointer;
+}
+
+.blocked {
+    cursor: auto;
 }
 
 .row {
@@ -37,6 +42,10 @@ body {
 
 #blue {
     background: blue;
+}
+
+.invisible {
+    display: none;
 }
 
 .opacity {
