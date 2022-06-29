@@ -4,7 +4,9 @@
 }
 
 body {
-    background: rgb(15, 15, 15);
+    margin-top: 5rem;
+    background-image:url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png);
+    /* background: rgb(15, 15, 15); */
     font-family: Arial, Helvetica, sans-serif;
     color: #fff;
 }
@@ -31,22 +33,27 @@ main {
 .column {
     display: flex;
     flex-direction: column;
+    
 }
 
 #green {
     background: green;
+    border-top-left-radius: 100%;
 }
 
 #red {
     background: red;
+    border-top-right-radius: 100%;
 }
 
 #yellow {
     background: yellow;
+    border-bottom-left-radius: 100%;
 }
 
 #blue {
     background: blue;
+    border-bottom-right-radius: 100%;
 }
 
 .invisible {
@@ -55,4 +62,10 @@ main {
 
 .opacity {
     opacity: .2;
+}
+
+footer p{
+    color: black;
+    text-align: center;
+    margin-top: 2rem;
 }
