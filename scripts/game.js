@@ -6,9 +6,7 @@ let colors = [];
 
 const messages = {
     gameOver: 'game over',
-    tryAgain: 'try again!',
-    congratulate: 'congrats! you are already in round [round_here]',
-    continue: 'continue'
+    tryAgain: 'try again!'
 };
 
 function Color(color, id, audio) {
@@ -71,20 +69,8 @@ function playGame(element) {
         return;
     }
 
-    let congratulateValid = congratulatePlayer();
-    if (congratulateValid == false) {
-        playerSequence = [];
+    playerSequence = [];
         startGame();
-    }
-}
-
-function congratulatePlayer() {
-   if (sequence.length == 1 || (sequence.length % 5 == 0)) {
-        congratulateAlert();
-        return true;
-   }
-
-   return false;
 }
 
 function blinkColor(currentColor) {
@@ -128,32 +114,6 @@ function gameOver () {
     }, 1000);
 }
 
-function congratulateAlert() {
-    Swal.fire({
-        title: messages.congratulate.replace('[round_here]', sequence.length + 1),
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        },
-        imageUrl: './assets/michael-scott-happy.gif',
-        imageWidth: 400,
-        imageHeight: 200,
-        width: 600,
-        padding: '3em',
-        color: '#716add',
-        backdrop: `
-        #563D67
-        `,
-         confirmButtonText: messages.continue
-      }).then(() => {
-        playerSequence = [];
-        startGame();
-      })
-}
-
-
 function gameOverAlert() {
     Swal.fire({
         title: messages.gameOver,
@@ -179,7 +139,7 @@ function gameOverAlert() {
 }
 
 function gameSettingsStart() {
-    addClassById('start', 'invisible');
+    addClassById('start', 'none');
 }
 
 function reset() {
