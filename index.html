@@ -1,40 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/global.css">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="./scripts/extension.js" defer></script>
-    <script src="./scripts/game.js" defer></script>    
-    
+    <script src="./scripts/game.js" defer></script>
+
     <title>Genius</title>
 </head>
+
 <body>
     <main class="column" style="gap: 2rem;">
-        <div id="game" class="column" style="gap: 1rem;">
-            <div class="row" style="gap: 1rem;">
+        <div id="game" class="column" style="gap: rem;">
+            <div class="row" style="gap: rem;">
                 <div class="cube" id="green" onclick="playGame(this)"></div>
                 <div class="cube" id="red" onclick="playGame(this)"></div>
             </div>
-            <div class="row" style="gap: 1rem;">
+            <div class="row" style="gap: rem;">
                 <div class="cube" id="yellow" onclick="playGame(this)"></div>
                 <div class="cube" id="blue" onclick="playGame(this)"></div>
+            </div>
+            <div class="central-button">
+                <h2>Genius</h2>
+                <div class="controls-btn">
+                    <button onclick="startGame()" id="start">start</button>
+                    <button onclick="mute()" id="mute">mute</button>
+                </div>
             </div>
         </div>
         <div class="invisible" id="round-container">
             <span>round: </span>
             <span id="round-content"></span>
         </div>
-        <div>
-            <button onclick="mute()" id="mute">mute</button>
-            <button onclick="startGame()" id="start">start</button>
-        </div>     
     </main>
     <footer>
-        <p>© Copyright 2022 | Created by <strong>Luiz Camargo</strong></p>
+        <p>© Copyright <span id="year"></span> | Created by <strong>Luiz Camargo</strong> and <strong>Ale
+                Camargo</strong></p>
     </footer>
 </body>
+
 </html>

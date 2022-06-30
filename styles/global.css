@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Bungee&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +8,6 @@
 body {
     margin-top: 5rem;
     background-image:url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png);
-    /* background: rgb(15, 15, 15); */
     font-family: Arial, Helvetica, sans-serif;
     color: #fff;
 }
@@ -16,8 +17,8 @@ main {
 }
 
 .cube {
-    height: 10rem;
-    width: 10rem;
+    height: 14rem;
+    width: 14rem;
     cursor: pointer;
 }
 
@@ -33,7 +34,7 @@ main {
 .column {
     display: flex;
     flex-direction: column;
-    
+    position: relative;
 }
 
 #green {
@@ -64,8 +65,70 @@ main {
     opacity: .2;
 }
 
+.central-button {
+    position: absolute;
+    background-color: #ece7ee;
+    width: 12rem;  
+    height: 12rem;
+    top: 8rem;
+    left: 7.5rem;     
+    border: .5rem solid #333333;
+    border-radius: 25rem;
+}
+
+.central-button h2 {
+    font-family: 'Bungee', cursive;
+    color: black;
+    text-align: center;
+    margin-top: 1em;
+}
+
+#start {
+    height: 3.5rem;
+    width: 3.5rem;
+    background-color: #00A74A;
+    border-radius: 100%;
+    box-shadow: 0 .2rem .3rem #222;
+    border: .4rem solid #444;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+#start:active {
+    transform: translate(0, .3rem);
+    box-shadow: none;
+}
+
+#mute {
+    height: 3.5rem;
+    width: 3.5rem;
+    background-color: yellow;
+    border-radius: 100%;
+    box-shadow: 0 .2rem .3rem #222;
+    border: .4rem solid #444;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+#mute:active {
+    transform: translate(0, .3rem); 
+    box-shadow: none;
+}
+
+.controls-btn {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+#round-container{
+    color:#333333;
+    font-family: 'Bungee', cursive;
+}
+
 footer p{
     color: black;
     text-align: center;
     margin-top: 2rem;
 }
+
